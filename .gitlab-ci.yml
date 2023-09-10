@@ -2,7 +2,11 @@ image:
   name: registry.gitlab.com/gitlab-org/gitlab-build-images:terraform
   entrypoint:
     - '/usr/bin/env'
-    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin/:/usr/bin/:/sbin:/bin'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+
+cache:
+  paths:
+    - .terraform
 
 variables:
   YC_SERVICE_ACCOUNT_KEY_FILE: /tmp/sa-key.json
