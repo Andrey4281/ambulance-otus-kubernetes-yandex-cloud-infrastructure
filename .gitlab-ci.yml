@@ -48,5 +48,5 @@ plan:
 apply:
   stage: apply
   script:
-    - terraform apply -auto-approve="planfile"
+    - terraform apply -auto-approve "planfile"
   when: manual
