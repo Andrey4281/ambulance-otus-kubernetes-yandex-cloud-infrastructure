@@ -1,0 +1,1 @@
+{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"kube","Source":"git::ssh://git@github.com/terraform-yc-modules/terraform-yc-kubernetes.git","Dir":".terraform/modules/kube"},{"Key":"yc-vpc","Source":"git::ssh://git@github.com/terraform-yc-modules/terraform-yc-vpc.git","Dir":".terraform/modules/yc-vpc"}]}
