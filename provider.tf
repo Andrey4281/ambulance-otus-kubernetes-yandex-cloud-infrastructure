@@ -10,7 +10,6 @@ terraform {
   backend "s3" {
     endpoint = "storage.yandexcloud.net"
     region = "ru-central1"
-
     bucket = "ambulance-tf-state"
     key = "tf.state"
 
