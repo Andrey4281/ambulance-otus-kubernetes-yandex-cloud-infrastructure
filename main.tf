@@ -1,5 +1,5 @@
 module "yc-vpc" {
-  source              = "git::ssh://git@github.com/terraform-yc-modules/terraform-yc-vpc.git?ref=master"
+  source              = "git::https://git@github.com/terraform-yc-modules/terraform-yc-vpc.git?ref=master"
   network_name        = "ambulance-network"
   network_description = "ambulance-network created with module"
   private_subnets     = [
@@ -22,7 +22,7 @@ module "yc-vpc" {
 }
 
 module "kube" {
-  source     = "git::ssh://git@github.com/terraform-yc-modules/terraform-yc-kubernetes.git?ref=master"
+  source     = "git::https://git@github.com/terraform-yc-modules/terraform-yc-kubernetes.git?ref=master"
   network_id = module.yc-vpc.vpc_id
 
   master_locations  = [
