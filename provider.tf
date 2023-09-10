@@ -7,18 +7,6 @@ terraform {
       version = "> 0.8"
     }
   }
-  backend "s3" {
-    endpoint = "storage.yandexcloud.net"
-    region = "ru-central1"
-    bucket = "ambulance-tf-state"
-    key = "tf.state"
-
-    skip_region_validation = true
-    skip_credentials_validation = true
-
-    dynamodb_endpoint = "https://docapi.serverless.yandexcloud.net/ru-central1/b1gm48epglvomnhepg5j/etnsh9nk24qmkmtdcksq"
-    dynamodb_table = "ambulance-tf-state"
-  }
 }
 
 locals {
