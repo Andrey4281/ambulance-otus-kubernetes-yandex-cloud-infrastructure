@@ -12,6 +12,7 @@ terraform {
     region = "ru-central1"
 
     bucket = "ambulance-tf-state"
+    key = "tf.state"
 
     skip_region_validation = true
     skip_credentials_validation = true
