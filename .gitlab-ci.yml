@@ -31,6 +31,7 @@ stages:
   - validate
   - plan
   - apply
+  - destroy
 
 validate:
   stage: validate
@@ -49,4 +50,10 @@ apply:
   stage: apply
   script:
     - terraform apply -auto-approve "planfile"
+  when: manual
+
+destroy:
+  stage: destroy
+  script:
+    - terraform destroy
   when: manual
