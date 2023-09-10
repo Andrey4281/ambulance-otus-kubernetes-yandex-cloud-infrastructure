@@ -1,5 +1,5 @@
 module "yc-vpc" {
-  source              = "git@github.com:terraform-yc-modules/terraform-yc-vpc.git"
+  source              = "./modules/yc-vpc"
   network_name        = "ambulance-network"
   network_description = "ambulance-network created with module"
   private_subnets = [{
