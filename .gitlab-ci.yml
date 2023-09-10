@@ -9,7 +9,7 @@ variables:
 
 before_script:
   - |
-    cat <<EOF >> ~/.terraformrc
+    cat <<EOF >> ~/.terraform
     provider_installation {
       network_mirror {
         url = "https://terraform-mirror.yandexcloud.net/"
