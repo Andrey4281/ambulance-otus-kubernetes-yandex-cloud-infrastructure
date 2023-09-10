@@ -1,10 +1,24 @@
 terraform {
+  required_version = ">=1.0.0"
+
   required_providers {
     yandex = {
       source = "yandex-cloud/yandex"
+      version = "> 0.8"
     }
   }
-  required_version = ">= 0.13"
+  backend "s3" {
+    endpoint = "storage.yandexcloud.net"
+    region = "ru-central1"
+
+    bucket = "ambulance-tf-state"
+
+    skip_region_validation = true
+    skip_credentials_validation = true
+
+    dynamodb_endpoint = "https://docapi.serverless.yandexcloud.net/ru-central1/b1gm48epglvomnhepg5j/etnsh9nk24qmkmtdcksq"
+    dynamodb_table = "ambulance-tf-state"
+  }
 }
 
 locals {
@@ -13,8 +27,6 @@ locals {
 }
 
 provider "yandex" {
-  zone = "ru-central1-b"
   cloud_id = local.cloud_id
   folder_id = local.folder_id
-  service_account_key_file = "authorized_key.json"
 }
