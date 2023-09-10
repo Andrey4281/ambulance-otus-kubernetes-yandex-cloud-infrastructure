@@ -4,6 +4,14 @@ terraform {
       source = "yandex-cloud/yandex"
       version = "> 0.8"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "> 3.3"
+    }
+    time = {
+      source  = "hashicorp/time"
+      version = "> 0.9"
+    }
   }
   required_version = ">= 1.0.0"
 }
