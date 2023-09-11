@@ -55,5 +55,5 @@ apply:
 destroy:
   stage: destroy
   script:
-    - terraform destroy -auto-approve
+    - terraform apply -destroy -auto-approve "planfile"
   when: manual
