@@ -24,7 +24,7 @@ before_script:
       }
     }
     EOF
-  - terraform init
+  - terraform init -auto-approve
   - echo $YC_KEY > /tmp/sa-key.json
 
 stages:
