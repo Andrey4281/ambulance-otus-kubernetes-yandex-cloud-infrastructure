@@ -24,7 +24,7 @@ before_script:
       }
     }
     EOF
-  - terraform init -backend-config="terraform-ambulance" -backend-config="ambulance.tfstate"
+  - terraform init -backend-config="bucket=terraform-ambulance" -backend-config="key=ambulance.tfstate"
   - echo $YC_KEY > /tmp/sa-key.json
 
 stages:
