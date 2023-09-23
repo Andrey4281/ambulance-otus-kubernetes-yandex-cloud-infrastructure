@@ -56,5 +56,5 @@ apply:
 destroy:
   stage: destroy
   script:
-    - terraform destroy -state=$STATE -auto-approve
+    - terraform destroy -target module.container-registry-images-puller -state=$STATE -auto-approve
   when: manual
