@@ -24,7 +24,7 @@ before_script:
       }
     }
     EOF
-  - terraform init
+  - terraform init -force-copy
   - echo $YC_KEY > /tmp/sa-key.json
 
 stages:
