@@ -10,7 +10,6 @@ cache:
 
 variables:
   YC_SERVICE_ACCOUNT_KEY_FILE: /tmp/sa-key.json
-  STATE: ambulance.tfstate
 
 before_script:
   - |
@@ -25,7 +24,7 @@ before_script:
       }
     }
     EOF
-  - terraform init -force-copy
+  - terraform init -backend-config="terraform-ambulance" -backend-config="ambulance.tfstate"
   - echo $YC_KEY > /tmp/sa-key.json
 
 stages:
@@ -42,7 +41,7 @@ validate:
 plan:
   stage: plan
   script:
-    - terraform plan -state=$STATE -out="planfile"
+    - terraform plan -out="planfile"
   artifacts:
     paths:
       - planfile
@@ -50,11 +49,11 @@ plan:
 apply:
   stage: apply
   script:
-    - terraform apply -state=$STATE -auto-approve "planfile"
+    - terraform apply -auto-approve "planfile"
   when: manual
 
 destroy:
   stage: destroy
   script:
-    - terraform destroy -state=$STATE -auto-approve
+    - terraform destroy -auto-approve
   when: manual
