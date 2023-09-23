@@ -10,6 +10,7 @@ cache:
 
 variables:
   YC_SERVICE_ACCOUNT_KEY_FILE: /tmp/sa-key.json
+  STATE: ambulance.tfstate
 
 before_script:
   - |
@@ -41,7 +42,7 @@ validate:
 plan:
   stage: plan
   script:
-    - terraform plan -out="planfile"
+    - terraform plan -state=$STATE -out="planfile"
   artifacts:
     paths:
       - planfile
@@ -49,11 +50,11 @@ plan:
 apply:
   stage: apply
   script:
-    - terraform apply -auto-approve "planfile"
+    - terraform apply -state=$STATE -auto-approve "planfile"
   when: manual
 
 destroy:
   stage: destroy
   script:
-    - terraform destroy -auto-approve
+    - terraform destroy -state=$STATE -auto-approve
   when: manual
