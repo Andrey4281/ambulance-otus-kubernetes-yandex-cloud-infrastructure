@@ -26,7 +26,6 @@ module "container-registry-images-puller" {
   name = "container-registry-images-puller"
   folder_id = local.folder_id
   roles = ["container-registry.images.puller"]
-  service_account_key = true
 }
 
 module "container-registry-images-pusher" {
@@ -34,7 +33,6 @@ module "container-registry-images-pusher" {
   name = "container-registry-images-pusher"
   folder_id = local.folder_id
   roles = ["container-registry.images.pusher"]
-  service_account_key = true
 }
 
 resource "yandex_container_registry" "ambulance-registry" {

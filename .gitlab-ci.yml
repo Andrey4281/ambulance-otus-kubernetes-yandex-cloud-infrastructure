@@ -41,29 +41,19 @@ validate:
 plan:
   stage: plan
   script:
-    - terraform plan -state="terraform.tfstate" -out="planfile"
+    - terraform plan -out="planfile"
   artifacts:
-    name: plan
     paths:
       - planfile
-      - terraform.tfstate
 
 apply:
   stage: apply
   script:
-    - terraform apply -state="terraform.tfstate" -auto-approve "planfile"
-  artifacts:
-    name: apply
-    paths:
-      - terraform.tfstate
-  dependencies:
-    - plan
+    - terraform apply -auto-approve "planfile"
   when: manual
 
 destroy:
   stage: destroy
   script:
-    - terraform destroy -state="terraform.tfstate" -auto-approve
-  dependencies:
-    - apply
+    - terraform destroy -auto-approve
   when: manual

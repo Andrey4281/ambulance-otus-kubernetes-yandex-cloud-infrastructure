@@ -13,6 +13,15 @@ terraform {
       version = "> 0.9"
     }
   }
+  backend "s3" {
+    endpoint = "storage.yandexcloud.net"
+    region = "ru-central1"
+    bucket = "terraform-ambulance"
+    key = "ambulance.tfstate"
+
+    skip_region_validation = true
+    skip_credentials_validation = true
+  }
   required_version = ">= 1.0.0"
 }
 
