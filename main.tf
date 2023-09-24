@@ -21,6 +21,9 @@ module "yc-vpc" {
   ]
 }
 
+variable "TF_VAR_ADMIN_DATABASE_PASSWORD" {
+  default = ""
+}
 module "ambulance-postgresql" {
   source      = "git::github.com/terraform-yc-modules/terraform-yc-postgresql?ref=master"
   network_id  = module.yc-vpc.vpc_id
