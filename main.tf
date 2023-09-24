@@ -21,6 +21,68 @@ module "yc-vpc" {
   ]
 }
 
+module "ambulance-postgresql" {
+  source      = "git::github.com/terraform-yc-modules/terraform-yc-postgresql?ref=master"
+  network_id  = module.yc-vpc.vpc_id
+  name        = "ambulance-postgresql"
+
+  hosts_definition = [
+    {
+      zone             = lookup(module.yc-vpc.private_subnets["10.11.0.0/24"], "zone")
+      assign_public_ip = false
+      subnet_id        = lookup(module.yc-vpc.private_subnets["10.11.0.0/24"], "subnet_id")
+    }
+  ]
+
+  postgresql_config = {
+    max_connections = 100
+  }
+
+  databases = [
+    {
+      name       = "appeal"
+      owner      = local.database_admin_name
+      lc_collate = "ru_RU.UTF-8"
+      lc_type    = "ru_RU.UTF-8"
+      extensions = ["uuid-ossp", "xml2"]
+    },
+    {
+      name       = "doctor"
+      owner      = local.database_admin_name
+      lc_collate = "ru_RU.UTF-8"
+      lc_type    = "ru_RU.UTF-8"
+      extensions = ["uuid-ossp", "xml2"]
+    },
+    {
+      name       = "nurse"
+      owner      = local.database_admin_name
+      lc_collate = "ru_RU.UTF-8"
+      lc_type    = "ru_RU.UTF-8"
+      extensions = ["uuid-ossp", "xml2"]
+    }
+  ]
+
+  owners = [
+    {
+      name       = local.database_admin_name
+      password = TF_VAR_ADMIN_DATABASE_PASSWORD
+      conn_limit = 15
+    }
+  ]
+
+  users = [
+    {
+      name        = "guest"
+      conn_limit  = 30
+      permissions = ["hexlet"]
+      settings = {
+        pool_mode                   = "transaction"
+        prepared_statements_pooling = true
+      }
+    }
+  ]
+}
+
 module "container-registry-images-puller" {
   source = "git::https://git@github.com/alxrem/terraform-yandex-service-account?ref=master"
   name = "container-registry-images-puller"
