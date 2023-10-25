@@ -65,7 +65,7 @@ module "ambulance-postgresql" {
   owners = [
     {
       name       = local.database_admin_name
-      password = "${var.TF_VAR_ADMIN_DATABASE_PASSWORD}"
+      password = TF_VAR_ADMIN_DATABASE_PASSWORD
       conn_limit = 15
     }
   ]
