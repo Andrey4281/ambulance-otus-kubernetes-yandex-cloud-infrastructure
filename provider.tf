@@ -28,7 +28,6 @@ terraform {
 locals {
   folder_id = "b1gk7spl5e7j0h0jldle"
   cloud_id = "b1gm48epglvomnhepg5j"
-  database_admin_name = "andrey4281"
 }
 
 provider "yandex" {

@@ -24,7 +24,6 @@ before_script:
       }
     }
     EOF
-  - export TF_VAR_ADMIN_DATABASE_PASSWORD=${ADMIN_DATABASE_PASSWORD}
   - terraform init -force-copy -backend-config="bucket=terraform-ambulance" -backend-config="key=ambulance.tfstate"
   - echo $YC_KEY > /tmp/sa-key.json
 
